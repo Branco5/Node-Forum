@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><%- include('partials/head.ejs') %></head>
+<body class="container">
+    <h1>Register</h1>
+    <form action="/users/register" method="POST" class="mt-4">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name ="username" required class ="form-control">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name ="password" required class ="form-control">        
+        </div>    
+        <div>        
+            <button type = "submit" class = "btn btn-primary mt-4 mb-2">Register</button>
+        </div>    
+    </form>
+    <% if (error) { %>
+        <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% } %>
+    <a href = '/users/login'>Login</a>
+    <a href = '/'>Back to landing page</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><%- include('partials/head.ejs') %></head>
+<body class ="container">
+    <%- include('partials/forumHeader.ejs') %>
+<div>
+    <% for (category of categories) { %>
+        <div class="card mt-4">
+            <div class = "card-body">
+                <h4 class="card-title"> <%= category.name %> </h4>
+                <div class="card-subtitle text-muted mb-2"> Added in <%= category.createDate %> </div>
+                <a class="btn btn-primary" href=<%=`${currentPath}/${category.name}`%>> Visit </a>
+                <% if(user) { %>
+                    <% if(user.usertype === 'admin') { %>
+                        <form action="/categories/<%=category.name%>?_method=DELETE" class="d-inline" method="POST">
+                            <button type="submit" class="btn btn-danger"> Delete </button>
+                        </form>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    <% } %>
+</div>
+<% if (user){ %> 
+    <% if (user.usertype === 'admin'){ %>        
+        <a class="btn btn-outline-success mt-4" href=<%=`${currentPath}/addCategory`%>>Add Category</a>
+    <% } %>
+<% } %>
+</body>
+</html>

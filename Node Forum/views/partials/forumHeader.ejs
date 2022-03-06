@@ -1,0 +1,10 @@
+
+<div class ="mt-4">
+    <h1><%= title %>                
+        <% if (user) { %>
+            <a href="/users/logout" class="float-end btn btn-outline-primary">Logout</a>
+        <% } else { %>
+            <a href="/users/login" class="float-end btn btn-primary">Login</a>
+        <% } %>
+    </h1>
+</div>

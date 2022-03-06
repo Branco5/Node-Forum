@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><%- include('partials/head.ejs') %></head>
+<body class ="container">
+    <%- include('partials/forumHeader.ejs') %>
+    <% for (post of posts) { %>
+        <div class="card mt-4">
+            <div class = "card-body">
+                <h4 class="card-title"> <%= post.game %> </h4>
+                <div class="card-subtitle text-muted mb-2"> Added in <%= post.postDate %> by <%= post.author %> | <%= post.likes %> likes</div>
+                <div class="mb-2"><%= post.body %></div>
+                <a class="btn btn-primary" href=<%=`${currentPath}/${post.id}`%>> Visit </a>
+                <% if (user) { %>   
+                    <% if(user.id === post.userid || user.username==='admin') { %>
+                        <form action="<%=currentPath%>/<%=post.id%>?_method=DELETE" class="d-inline" method="POST">
+                            <button type="submit" class="btn btn-danger"> Delete </button>
+                        </form>
+                    <% } %>                     
+                <% } %> 
+            </div>
+        </div>
+    <% } %>
+    <% if (user) { %> 
+        <% if (user.usertype === 'admin' || user.usertype === 'contentManager'){ %>
+            <a class="btn btn-outline-success mt-4" href=<%=`${currentPath}/newPost`%>>Add New Post</a>
+        <% } %>  
+    <% } %> 
+    <a class = "btn btn-outline-secondary mt-4" href='/categories'>Back to categories</a>
+</body>
+</html>

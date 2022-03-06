@@ -1,0 +1,11 @@
+{
+    "server": {
+        "port": 5000
+    },
+    "mysql": {
+        "host": "localhost",
+        "user": "root",
+        "password": "",
+        "database": "node_db"
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head><%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    </head>
+    <body class="container">
+        <%- include('partials/forumHeader.ejs') %>        
+    <div>
+        <div class="card mt-4">
+            <div class = "card-body">
+                <div> 
+                    <h4 class="card-title"> <%= post.game %> </h4>
+                    <p class="card-subtitle text-muted"> Posted in <%= post.postDate %> by <%= postAuthor %> | 
+                    <span id="like-count"><%= postLikes %> likes</span> </p>
+                </div>                
+                <div class="row mt-2">
+                    <div class="col-md-3"><img src="<%= post.imgUrl %>" alt="<%= post.game %>" class="img-thumbnail" height="350" width="300"/></div>
+                    <div class="col-md-9 lead"><%= post.body %>
+                        <div class="row align-self-end mt-2">
+                            <div class="col-md-1">
+                                <% if (user) { %>    
+                                    <button id="likeButton" style="font-size: 24px" title="like this post">
+                                        <% if (userLikedPost.length>0) { %>     
+                                            <i class="fa fa-heart" style="color:red" > </i> 
+                                        <% } else { %> 
+                                            <i class="fa fa-heart" style="color:gray" > </i> 
+                                        <% } %> 
+                                    </button>
+                                <% } %> 
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div>
+            <label for = "newComment" class="mt-4"> Post a comment </label>            
+            <textarea maxlength="500" class="form-control mb-2 mt-2" id="commentTextArea" name="newComment" rows="3"></textarea>
+            <button class="btn btn-outline-success mb-4" id="postCommentButton">submit</button>
+            <a class = "btn btn-outline-secondary mb-4" href=<%=`/categories/${title}`%>>Back to category</a>
+        </div>       
+
+        <% if (comments.length > 0) { %>
+            <%for(let comment of comments) { %>
+                <div class="panel panel-default border border-secondary mb-2" style="border-width:10px">
+                    <div class="panel-heading bg-dark text-white px-2">
+                    <div class="text-muted pull-right">
+                        <%= comment.commentDate %>
+                    </div>
+                        <%= comment.author %>
+                    </div>
+                    <div class="panel-body bg-light px-2 py-1">
+                        <%= comment.content %>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+    <script src = "/scripts/postController.js"></script>
+    </body>
+</html>
+        

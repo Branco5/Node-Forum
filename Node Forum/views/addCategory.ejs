@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><%- include('partials/head.ejs') %></head>
+<body class="container">
+<h1>Add Category</h1>
+<form action="/categories/addCategory" method="POST">
+    <div>
+        <label for="category">Name</label>
+        <input type="text" id="category" name ="category" required class ="form-control">
+        <div class="mt-4"></div>
+        <button class = "btn btn-primary" type = "submit">Submit</button>        
+        <a class = "btn btn-secondary" href='/categories'>Cancel</a>
+    </div> 
+</form>
+</body>
+</html>
+

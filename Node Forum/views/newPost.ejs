@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><%- include('partials/head.ejs') %></head>
+<body class="container">
+<h1 class="mt-4">Add new post</h1>
+    <form action=<%=`${currentPath}`%> method="POST" encType="multipart/form-data">
+            <div class = "mt-4">
+                <label for="game">Game</label>
+                <input type="text" id="game" name ="game" required class ="form-control">
+            </div>        
+            <div class = "mt-4">
+                <label for="description" maxlength="3000">Description</label>
+                <textarea rows="5" id="description" name ="description" required class ="form-control"></textarea>
+            </div>
+            <div class = "mt-4">
+                <label for="gameImg">Pick game image</label>
+                <input type="file" name="gameImg" id="gameImg" accept="image/png, image/jpeg" class ="form-control-file" required>
+            </div>       
+            <div class="mt-4">
+                <button class = "btn btn-primary" type = "submit">Add Post</button>
+                <a class = "btn btn-secondary" href=<%=`/categories/${category}`%>>Cancel</a>
+            </div>
+    </form>
+    <% if (error) { %>
+        <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% } %>
+</body>
+</html>
